@@ -1,0 +1,17 @@
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        x = str(x)
+        def isPalindromeHelper(string, low, high):
+            if low >= high:
+                return True
+            else:
+                res = isPalindromeHelper(string, low + 1, high - 1)
+                if string[low] == string[high]:
+                    return True and res
+                else:
+                    return False
+        return isPalindromeHelper(x, 0, len(x) - 1)
