@@ -1,0 +1,20 @@
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        max_sum = nums[0]
+        curr_sum = nums[0]
+        sum_list = [max_sum]
+        for i in range(1, len(nums)):
+            curr_sum = nums[i]
+            max_sum += curr_sum
+            t_val = max(max_sum, curr_sum)
+            sum_list.append(t_val)
+            max_sum = t_val
+        max_max = nums[0]
+        for num in sum_list:
+            if num > max_max:
+                max_max = num
+        return max_max
