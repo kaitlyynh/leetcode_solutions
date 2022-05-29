@@ -7,12 +7,7 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         
-        options = []
-        for subarray in mat:
-            for num in subarray:
-                options.append(num)
-        if (r * c) != len(options):
-            return mat
+        num_count = 0
         final_lst = []
         temp_lst = []
         count = 0
@@ -25,4 +20,7 @@ class Solution(object):
                     final_lst.append(temp_lst)
                     count = 0
                     temp_lst = []
+                num_count += 1
+        if num_count != r * c:
+            return mat
         return final_lst
