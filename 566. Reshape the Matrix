@@ -1,0 +1,28 @@
+class Solution(object):
+    def matrixReshape(self, mat, r, c):
+        """
+        :type mat: List[List[int]]
+        :type r: int
+        :type c: int
+        :rtype: List[List[int]]
+        """
+        
+        options = []
+        for subarray in mat:
+            for num in subarray:
+                options.append(num)
+        if (r * c) != len(options):
+            return mat
+        final_lst = []
+        temp_lst = []
+        count = 0
+        for subarray in mat:
+            for num in subarray:
+                if count < c:
+                    temp_lst.append(num)
+                    count += 1
+                if count == c:
+                    final_lst.append(temp_lst)
+                    count = 0
+                    temp_lst = []
+        return final_lst
