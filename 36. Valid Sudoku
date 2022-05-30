@@ -1,0 +1,26 @@
+class Solution(object):
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        row_count = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: []}
+        col_count = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: []}
+        grid_count = {}
+        for i in range(len(board)):
+            for j in range(len(board)):
+                if board[i][j] != '.':
+                    if board[i][j] in row_count[i]:
+                        return False
+                    row_count[i] += [(board[i][j])]
+                    if board[i][j] in col_count[j]:
+                        return False
+                    col_count[j] += [board[i][j]]
+                    if (i//3,j//3) not in grid_count:
+                        grid_count[(i//3,j//3)] = []
+                        grid_count[(i//3,j//3)] += [board[i][j]]
+                    elif (i//3,j//3) in grid_count:
+                        if board[i][j] in grid_count[(i//3,j//3)]:
+                            return False
+                        grid_count[(i//3,j//3)] += [board[i][j]]
+        return True
