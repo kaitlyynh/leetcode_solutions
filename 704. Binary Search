@@ -1,0 +1,19 @@
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        low_idx = 0
+        high_idx = len(nums) - 1
+        mid_idx = (low_idx + high_idx) // 2
+        while low_idx <= high_idx:
+            if nums[mid_idx] == target:
+                return mid_idx
+            elif nums[mid_idx] > target:
+                high_idx = mid_idx - 1
+            elif nums[mid_idx] < target:
+                low_idx = mid_idx + 1
+            mid_idx = (low_idx + high_idx) // 2
+        return -1
