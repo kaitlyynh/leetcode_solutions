@@ -1,0 +1,23 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        d = {}
+        cursor = head
+        idx = 0
+        while cursor:
+            if not cursor in d:
+                d[cursor] = idx
+            else:
+                return True
+            idx += 1
+            cursor = cursor.next
+        return False
