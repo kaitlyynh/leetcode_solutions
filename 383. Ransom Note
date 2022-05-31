@@ -1,0 +1,25 @@
+class Solution(object):
+    def canConstruct(self, ransomNote, magazine):
+        """
+        :type ransomNote: str
+        :type magazine: str
+        :rtype: bool
+        """
+        r = {}
+        for letter in ransomNote:
+            if letter not in r:
+                r[letter] = 1
+            else:
+                r[letter] += 1
+        m = {}
+        for character in magazine:
+            if character not in m:
+                m[character] = 1
+            else:
+                m[character] += 1
+        for key in r:
+            if not key in m:
+                return False
+            if m[key] < r[key]:
+                return False
+        return True
