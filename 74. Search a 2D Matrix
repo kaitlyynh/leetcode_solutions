@@ -1,3 +1,4 @@
+#O(num of rows * length of row)
 class Solution(object):
     def searchMatrix(self, matrix, target):
         """
@@ -10,4 +11,42 @@ class Solution(object):
                 for num in row:
                     if num == target:
                         return True
+        return False
+
+
+
+
+** Better time complexity solution (5/31/2022)
+
+#O(log((num of rows * length of row))
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        low = 0
+        high = len(matrix) - 1
+        mid = (low + high) // 2
+        while low <= high:
+            row = matrix[mid]
+            if row[0] <= target <= row[-1]:
+                low_idx = 0
+                high_idx = len(row) - 1
+                mid_idx = (low_idx + high_idx) // 2
+                while low_idx <= high_idx:
+                    if row[mid_idx] == target:
+                        return True
+                    elif row[mid_idx] > target:
+                        high_idx = mid_idx - 1
+                    elif row[mid_idx] < target:
+                        low_idx = mid_idx + 1
+                    mid_idx = (low_idx + high_idx) // 2
+                return False
+            elif target < row[0]:
+                high = mid - 1
+            elif target > row[-1]:
+                low = mid + 1
+            mid = (low + high) // 2
         return False
