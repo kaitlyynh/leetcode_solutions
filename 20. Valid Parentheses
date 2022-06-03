@@ -21,4 +21,31 @@ class Solution(object):
             count += 1
         return len(my_stack) == 0
         
+        
+        
+        
+        
+ #Coding improved
+ 
+ class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        opens = '[{('
+        closes = ']})'
+        pairs = {'[':']', '{':'}', '(':')'}
+        stack = []
+        for char in s:
+            if char in opens:
+                stack.append(char)
+            elif char in closes:
+                if len(stack) > 0:
+                    if pairs[stack.pop()] != char:
+                        return False
+                elif len(stack) == 0:
+                    return False
+        return len(stack) == 0
+        
             
