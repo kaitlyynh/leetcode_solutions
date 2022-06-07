@@ -1,0 +1,15 @@
+class Solution(object):
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        sMax = nums[0]
+        sMin = nums[0]
+        ans = max(nums)
+        for i in range(1, len(nums)):
+            temp_max = sMax
+            sMax = max(sMax * nums[i], sMin * nums[i], nums[i])
+            sMin = min(sMin * nums[i], temp_max * nums[i], nums[i])
+            ans = max(sMax, ans)
+        return ans
