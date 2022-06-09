@@ -1,0 +1,18 @@
+class Solution(object):
+    def twoSum(self, numbers, target):
+        """
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        low = 0
+        high = len(numbers) - 1
+        target_found = False
+        while not target_found:
+            if numbers[low] + numbers[high] > target:
+                high -= 1
+            elif numbers[low] + numbers[high] < target:
+                low += 1
+            else: #numbers[low] + numbers[high] == target
+                target_found = True
+                return [low + 1, high + 1]
