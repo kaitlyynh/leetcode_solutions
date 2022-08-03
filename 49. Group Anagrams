@@ -1,0 +1,22 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        d = {}
+        l = []
+        for word in strs:
+            key = [0] * 26
+            for letter in word:
+                idx = ord(letter) - ord('a')
+                key[idx] = key[idx] + 1
+            key = tuple(key)
+            if key not in d:
+                d[key] = []
+                d[key] = d[key] + [word]
+            else:
+                d[key] = d[key] + [word]
+        for values in d.values():
+            l.append(values)
+        return l
