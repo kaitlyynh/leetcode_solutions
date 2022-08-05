@@ -1,0 +1,19 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        max_streak = 0
+        track = []
+        streak = 0
+        for char in s:
+            if not char in track:
+                track.append(char)
+            elif char in track:
+                while char in track:
+                    track.pop(0)
+                track.append(char)
+            streak = len(track)
+            max_streak = max(max_streak, streak)
+        return max_streak
