@@ -1,0 +1,17 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        threshold = len(nums) // 2
+        d = {}
+        for num in nums:
+            if not num in d:
+                d[num] = 1
+            else:
+                d[num] += 1
+        for num in nums:
+            if d[num] > threshold:
+                return num
+        
