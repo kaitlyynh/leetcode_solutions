@@ -1,0 +1,27 @@
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        a_num = 0
+        b_num = 0
+        for i in range(len(a) -1, -1, -1):
+            if a[i] == '1':
+                a_num += (2 ** (len(a) - 1 - i))
+        for j in range(len(b) -1, -1, -1):
+            if b[j] == '1':
+                b_num += (2 ** (len(b) - 1 - j))
+        new_num = a_num + b_num
+        if new_num == 0:
+            return '0'
+        else:
+            new_num_s = ''
+            while new_num > 0:
+                new_num_s += str(new_num % 2)
+                new_num = new_num // 2
+            return new_num_s[::-1]
+        
+        
+            
