@@ -1,3 +1,5 @@
+#The solution O(n) time and O(n) space
+
 class Solution(object):
     def majorityElement(self, nums):
         """
@@ -14,4 +16,25 @@ class Solution(object):
         for num in nums:
             if d[num] > threshold:
                 return num
-        
+
+#The solution for O(n) time, O(1) space
+
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        maj_element = nums[0]
+        track = 0
+        for num in nums:
+            if track == 0:
+                maj_element = num
+            if num == maj_element:
+                track += 1
+            else:
+                track -= 1
+        return maj_element
+
+Explanation: Uses Boyer-Moore algorithm. Maj_element starts at the first number, +1 to track if numbers are the same as maj_element, -1 if it is not.
+If track reaches 0, maj_element is updated to num, and start by adding +1.
