@@ -1,0 +1,13 @@
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def helper(n):
+            if n <= 1:
+                return 1, 0
+            else:
+                res = helper(n - 1)
+                return res[0] + res[1], res[0]
+        return helper(n)[0] + helper(n)[1]
