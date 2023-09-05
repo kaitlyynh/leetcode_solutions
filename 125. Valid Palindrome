@@ -4,16 +4,15 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        alphabet = 'abcdefghijklmnopqrstuvwxyz'
-        my_s = ''
-        s_lower = s.lower()
-        for char in s_lower:
-            if char in alphabet or char.isnumeric():
-                my_s += char
+        s2 = ''
+        for char in s:
+            if char.isalpha() or char.isnumeric():
+                s2 += char
+        s2 = s2.lower()
         low = 0
-        high = len(my_s) - 1
-        while low < high:
-            if my_s[low] != my_s[high]:
+        high = len(s2) - 1
+        while low <= high:
+            if s2[low] != s2[high]:
                 return False
             low += 1
             high -= 1
