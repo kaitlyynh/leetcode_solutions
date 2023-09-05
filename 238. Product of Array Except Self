@@ -4,23 +4,17 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
+        prefix_products = []
+        prefix = 1
+        for num in nums:
+            prefix_products.append(prefix)
+            prefix *= num
+        postfix_products = [1 for i in range(len(nums))]
+        postfix = 1
+        for i in range(len(nums) - 1, -1, -1):
+            postfix_products[i] = postfix
+            postfix *= nums[i]
         ans = []
-        pre_factors = []
-        post_factors = []
-        product = None
         for i in range(len(nums)):
-            if i == 0:
-                product = 1
-            else:
-                product *= nums[i - 1]
-            pre_factors.append(product)
-        for j in range(len(nums) - 1, -1, -1):
-            if j == len(nums) - 1:
-                product = 1
-            else:
-                product *= nums[j + 1]
-            post_factors.append(product)
-        for k in range(len(pre_factors)):
-            ans.append(pre_factors[k] * post_factors[len(pre_factors)- 1 - k])
+            ans.append(prefix_products[i] * postfix_products[i])
         return ans
-            
