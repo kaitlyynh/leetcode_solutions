@@ -10,7 +10,7 @@ class Solution(object):
         lcs = 0
         for num in nums:
             local_lcs = 1
-            if num - 1 not in nums_dict and num + 1 in nums_dict:
+            if num - 1 not in nums_dict:
                 curr = num
                 while curr + 1 in nums_dict:
                     local_lcs += 1
