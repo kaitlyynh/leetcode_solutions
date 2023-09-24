@@ -4,24 +4,21 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        nums.sort()
-        final = []
+        combos = []
+        nums.sort() #so that we can apply Two Sum II technique **
         for i in range(len(nums)):
-            target = nums[i]
-            low = i + 1
-            high = len(nums) - 1
-            while low <= high:
-                if low != high:
-                    if nums[low] + nums[high] + target < 0:
-                        low += 1
-                    elif nums[low] + nums[high] + target > 0:
-                        high -= 1
-                    else: # 3 sum == 0
-                        var = [target, nums[low], nums[high]]
-                        if var not in final:
-                            final.append(var)
-                        low += 1
-                        high -= 1
-                else:
-                    low += 1
-        return final
+            l = i + 1
+            r = len(nums) - 1
+            while l < r: #not <= since we dont consider when l == r anyways (no dupes in sum) **
+                if nums[l] + nums[r] + nums[i] < 0: #sum too low
+                    l += 1
+                elif nums[l] + nums[r] + nums[i] > 0:  #sum too high
+                    r -= 1
+                else: # equals 0
+                    candidate = [nums[i], nums[l], nums[r]]
+                    if candidate not in combos: #easy but not good time to check if exists (no dupes in answer) **
+                        combos.append(candidate)
+                    l += 1 #always increment up so we dont have infinite loop
+        return combos
+
+                
