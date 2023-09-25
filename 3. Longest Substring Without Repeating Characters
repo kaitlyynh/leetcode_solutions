@@ -17,3 +17,26 @@ class Solution(object):
             streak = len(track)
             max_streak = max(max_streak, streak)
         return max_streak
+
+09/25/23 Two Pointer
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        left = 0 #we will decide when this changes
+        longest = 0 
+        letters = {}
+        for right in range(len(s)): #auto increment r
+            if s[right] not in letters: 
+                letters[s[right]] = 1
+                longest = max(longest, right - left + 1)
+            elif s[right] in letters:
+                while s[left] != s[right]: #keep removing chars. in between!!
+                    del letters[s[left]]
+                    left += 1
+                left += 1
+                longest = max(longest, right - left + 1)
+        return longest
+
