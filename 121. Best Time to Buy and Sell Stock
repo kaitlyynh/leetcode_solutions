@@ -15,3 +15,22 @@ class Solution(object):
                 if profit > max_profit:
                     max_profit = profit
         return max_profit
+
+
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        max_profit = 0
+        low = 0
+        high = low + 1
+        while high < len(prices):
+            if prices[high] > prices[low]:
+                max_profit = max(max_profit, prices[high] - prices[low])
+            elif prices[high] <= prices[low]:
+                low = high
+            high += 1
+        return max_profit
+
