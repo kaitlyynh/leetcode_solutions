@@ -1,0 +1,26 @@
+class Solution(object):
+    def characterReplacement(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        char_to_freq = {}
+        longest_window = 0
+        left = 0
+        max_freq = 0
+        for right in range(len(s)):
+            if s[right] in char_to_freq:
+                char_to_freq[s[right]] += 1
+            elif s[right] not in char_to_freq:
+                char_to_freq[s[right]] = 1
+            for num in char_to_freq.values():
+                max_freq = max(max_freq, num)
+            if (right - left + 1) - max_freq <= k:
+                longest_window = max(longest_window, right - left + 1)
+            else:
+                while (right - left + 1) - max_freq > k:
+                    char_to_freq[s[left]] -= 1
+                    left += 1
+        return longest_window
+            
