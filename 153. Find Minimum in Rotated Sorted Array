@@ -18,7 +18,6 @@ class Solution(object):
                 r = mid - 1
         return min_val
 
-
- # two portions, find the one that containers smaller values (left or right)
- # compare middle point to left pointer to determine what portion you are in (if left is the larger one or is it the right)
- # if in a sorted portion and the left is smallest set it as min
+# left portion has higher values than right portion
+# compare middle point to left pointer to determine what portion you are in (if left is the larger one or is it the right)
+# if in a sorted portion and the left is smallest set it as min
